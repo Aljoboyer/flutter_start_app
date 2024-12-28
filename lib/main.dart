@@ -2,9 +2,86 @@ import 'package:flutter/material.dart';
 
 const age = 28;
 
- getFullName(String firstName, String lastName){
-  return '$firstName $lastName';
+getFullName( firstName, String lastName){
+  var names = firstName ?? lastName;
+  return names;
 }
+
+String test(names){
+
+  if (names == 'Foo') {
+      String foundName = 'Foo Bar';
+       
+       return foundName;
+  }
+  else{
+    String notFound = 'Ahan Vai Here';
+    return notFound;
+  }
+
+}
+
+class Person {
+  final String name;
+  Person(this.name);
+  void run(){
+    print('Running');
+  }
+  void breathe(){
+    print('Breathing...');
+  }
+}
+
+void testtwo(){
+  final person = Person('Ahan Vai');
+
+  person.run();
+  person.breathe();
+  print(person.name);
+
+}
+
+class dog{
+  final String name;
+  dog(this.name);
+
+  factory dog.fluffball() {
+    return dog('Fluff Ball');
+  }
+
+}
+
+void dogTest(){
+  final fluffball = dog('Fluff Ball');
+  print(fluffball.name);
+}
+
+
+class tiger{
+  final String name;
+  tiger(this.name);
+
+  @override
+  bool operator ==(covariant tiger other) => other.name == name;
+  
+  @override
+  int get hashCode => name.hashCode;
+
+  
+}
+
+void tigerTest(){
+  final tigerVai = tiger('Tiger One');
+  final tigerVai2 = tiger('Tiger One');
+
+  if(tigerVai == tigerVai2){
+    print('Same Vai');
+  }
+  else{
+    print('Not Same');
+  }
+}
+
 void main() {
   runApp(const MyApp());
 }
@@ -14,6 +91,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -35,6 +113,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+ 
   int _counter = 0;
 
   void _incrementCounter() {
@@ -53,7 +132,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    
+     testtwo();
+     dogTest();
+     tigerTest();
     return Scaffold(
       appBar: AppBar(
       
@@ -74,7 +155,8 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            Text(getFullName('Jhon', 'Doe'))
+            Text(getFullName(null, 'Doe')),
+            Text(test('Foo'))
           ],
         ),
       ),
@@ -84,7 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
         Column(children: [FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add), 
       ), ],),
        Column(children: [FloatingActionButton(
         onPressed: _decrementCounter,
