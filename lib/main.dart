@@ -56,7 +56,6 @@ void dogTest(){
   print(fluffball.name);
 }
 
-
 class tiger{
   final String name;
   tiger(this.name);
@@ -80,6 +79,68 @@ void tigerTest(){
   else{
     print('Not Same');
   }
+}
+
+class bird{
+  final String name;
+  bird(this.name);
+}
+
+extension fly on bird{
+  void flying(){
+    print('Bird $name is Flying');
+  }
+}
+
+void birdTest(){
+  final trials = bird('Parrot');
+  trials.flying();
+}
+
+Future<int>alienFuture(int a){
+  return Future.delayed(const Duration(seconds: 3), () {
+    return a * 2;
+  });
+}
+
+ alientester() async {
+  final result = await alienFuture(10);
+  print(result);
+}
+
+Stream <String> getAlienName(){
+  return Stream.periodic(const Duration(seconds: 2), (value) {
+    return 'Fooo';
+  });
+}
+
+void nameTest() async{
+  await for (final value in getAlienName()){
+    print(value);
+  }
+}
+ 
+Iterable<int> getOneTwoThree() sync*{
+  yield 1;
+  yield 2;
+}
+
+void iterableTest(){
+  for (final value in getOneTwoThree()){
+    print(value);
+  }
+}
+
+// Generic Type ------------//
+class GenericPair<A , B>{
+  final A value1;
+  final B value2;
+  GenericPair(this.value1, this.value2);
+}
+
+void genericTest(){
+  final nameee = GenericPair('Ahan', 'Vai Joss');
+  print(nameee);
 }
 
 void main() {
@@ -135,6 +196,10 @@ class _MyHomePageState extends State<MyHomePage> {
      testtwo();
      dogTest();
      tigerTest();
+     birdTest();
+     alientester();
+     iterableTest();
+     genericTest();
     return Scaffold(
       appBar: AppBar(
       
@@ -156,7 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             Text(getFullName(null, 'Doe')),
-            Text(test('Foo'))
+            Text(test('Foo')),
           ],
         ),
       ),
